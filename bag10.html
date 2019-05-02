@@ -20,9 +20,8 @@ function ready(callback) {
 ready(function() {
   document.querySelector('.orderstr').addEventListener('click', function(){
     AlipayJSBridge.call('getUserInfo', function(info){
-      var userId= info.userId;
-	alert(userId)
-      
+      	var ins = JSON.stringify(info)
+	alert(ins)
     });
   });
 });
