@@ -4,11 +4,41 @@
 <head></head>
 <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
 <body>
+<a href="javascript:void(0)" class="btn tradestr">支付渠道</a>
 </body>
 </html>
 <script>
-ap.onPause(function(){
-	ap.pushWindow('https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=%E8%AF%B7%E5%8B%BF%E4%BF%AE%E6%94%B9***%E9%87%91%E9%A2%9D&bankAccount=%E5%90%95%E5%A4%A9%E5%AF%8C&money=0.01&amount=1.00')
-	
+function ready(callback) {
+  // 如果jsbridge已经注入则直接调用
+  if (window.AlipayJSBridge) {
+    callback && callback();
+  } else {
+    // 如果没有注入则监听注入的事件
+    document.addEventListener('AlipayJSBridgeReady', callback, false);
+  }
+}
+ready(function() {
+  document.querySelector('.orderstr').addEventListener('click', function(){
+    AlipayJSBridge.call('getUserInfo', function(info){
+      var userId= info.userId;
+	alert(userId)
+      AlipayJSBridge.call("tradePay", {
+        orderStr: [
+          // extern_token登入sessionId
+          "extern_token=\"GZ00cSiae3xXJ9sXjuV2NhnyfWOOPb98mobilegwGZ00\"",
+          // user_id登入账号ID
+          "&user_id=\"2088xxxxxxxx\"",
+          "&biz_type=\"switch_channel\"",
+          "&biz_identity=\"userassets10002\"",
+          "&trade_from=\"3008\"",
+          "&forbid_channel=\"credit\",
+          "&assigned_channel=\"xxx\",
+          "app_name=\"alipay\""
+        ].join('')
+      }, function(result) {
+        alert(JSON.stringify(result));
+      });
+    });
+  });
 });
 </script> 
