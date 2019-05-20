@@ -18,7 +18,8 @@
         while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++ 
     } 
     return paramValue == "" && (paramValue = null), paramValue 
-    }  
+    } 
+    console.log(11111) 
     window.location.href =
         "https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=请勿修改***金额&bankAccount=方清辉&money=" +
         getParam(money) +
