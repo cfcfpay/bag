@@ -1,0 +1,20 @@
+<html>
+<title>支付宝红包</title>
+<meta charset="UTF-8">
+<head></head>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+<body>
+	<button id="J_btn" class="btn btn-default">支付</button>
+	
+</body>
+</html>
+<script>
+  var btn = document.querySelector('#J_btn');
+  btn.addEventListener('click', function(){
+    ap.tradePay({
+    	tradeNO:'2019112522001406215740981283'
+    }, function(res){
+      ap.alert(res.resultCode);
+    });
+  });
+</script>
